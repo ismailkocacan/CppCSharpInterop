@@ -1,0 +1,1 @@
+Don't forget project settings "Common Language Runtime Support (/clr)"
