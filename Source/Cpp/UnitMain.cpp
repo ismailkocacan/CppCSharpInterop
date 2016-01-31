@@ -10,8 +10,17 @@
 TForm1 *Form1;
 
 
+typedef struct TKeyValue
+{
+
+  char Key[15];
+  char Value[15];
+
+} TKeyValue;
+
 typedef struct MyStruct
 {
+/*
   int X;
   double Y;
   float Z;
@@ -19,6 +28,9 @@ typedef struct MyStruct
   char FirstName[15];
   char LastName[15];
   char *Array[3];
+*/
+
+  TKeyValue *KeyValue[1];
 
 } TMyStruct;
 
@@ -44,7 +56,6 @@ void __fastcall TForm1::btnInvokeMethodClick(TObject *Sender)
   FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM, NULL, GetLastError(),MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), buf, 256, NULL);
   OutputDebugStringW(buf);
 
-
   if(dllHandle == NULL) return;
   int status = -1;
 
@@ -57,6 +68,8 @@ void __fastcall TForm1::btnInvokeMethodClick(TObject *Sender)
   try
   {
 	  TMyStruct aMyStruct;
+	  aMyStruct.KeyValue[0] = new TKeyValue();
+
 
 	  char parameter1[15];
 	  char parameter2[15];
@@ -69,17 +82,7 @@ void __fastcall TForm1::btnInvokeMethodClick(TObject *Sender)
 	  OutputDebugStringW(buf);
 
 
-	  ShowMessage(aMyStruct.X);
-	  ShowMessage(aMyStruct.Y);
-	  ShowMessage(aMyStruct.Z);
-
-	  ShowMessage(aMyStruct.FirstName);
-	  ShowMessage(aMyStruct.LastName);
-
-	  ShowMessage(aMyStruct.Array[0]);
-	  ShowMessage(aMyStruct.Array[1]);
-	  ShowMessage(aMyStruct.Array[2]);
-
+	  ShowMessage(aMyStruct.KeyValue[0]->Key);
   }
   catch(EAccessViolation &err)
   {

@@ -5,12 +5,22 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 
+[StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+public struct KeyValue
+{
+    [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 15)]
+    public string Key;
+
+    [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 15)]
+    public string Value;
+}
+
 
 [ComVisible(true)]
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
 public struct MyStruct
 {
-
+    /*
     public int X;
 
     public double Y;
@@ -27,8 +37,11 @@ public struct MyStruct
     public string LastName;
 
 
-
     [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
     public string[] Array;
 
+    */
+
+    [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1)]
+    public KeyValue[] KeyValue;
 }

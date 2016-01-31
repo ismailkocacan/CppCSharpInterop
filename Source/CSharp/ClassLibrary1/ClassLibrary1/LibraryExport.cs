@@ -19,7 +19,7 @@ namespace ClassLibrary1
 
             try
             {
-         
+                /*
                 myStruct.X = 5;
                 myStruct.Y = 6.5;
                 myStruct.Z = 25;
@@ -30,7 +30,15 @@ namespace ClassLibrary1
                 myStruct.Array[0] = "value1";
                 myStruct.Array[1] = "value2";
                 myStruct.Array[2] = "value3";
+                */
 
+                
+           
+                
+                myStruct.KeyValue[0].Key = "x key 1";
+                myStruct.KeyValue[0].Value = "x value 1";
+                MessageBox.Show("KeyValue : " + myStruct.KeyValue[0].Key);
+           
                 result = 1;
             }
             catch (Exception e)

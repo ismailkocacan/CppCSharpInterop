@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2016/01/29 02:26:17.000.051,=C:\Users\isocan\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2016/02/01 00:25:37.340,=C:\Users\isocan\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2016/02/01 00:26:33.903,C:\Users\isocan\Desktop\CppCSharpInterop\Source\TestVCpp_CBuilderXE2\CBuilderXE2\UnitMain.h=C:\Users\isocan\Documents\RAD Studio\Projects\Unit1.h</Transaction>
+    <Transaction>2016/02/01 00:26:33.903,C:\Users\isocan\Desktop\CppCSharpInterop\Source\TestVCpp_CBuilderXE2\CBuilderXE2\UnitMain.cpp=C:\Users\isocan\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2016/02/01 00:26:33.903,C:\Users\isocan\Desktop\CppCSharpInterop\Source\TestVCpp_CBuilderXE2\CBuilderXE2\UnitMain.dfm=C:\Users\isocan\Documents\RAD Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2016/02/01 00:26:41.886,C:\Users\isocan\Desktop\CppCSharpInterop\Source\TestVCpp_CBuilderXE2\CBuilderXE2\Client.cbproj=C:\Users\isocan\Documents\RAD Studio\Projects\Project1.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>
