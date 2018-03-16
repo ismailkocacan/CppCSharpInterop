@@ -23,7 +23,7 @@ public class Test
                 current->FieldInt = 31;
                 while (current <= last)
                 {
-                    string value = string.Format("FInt: {0}, FDouble: {1}", 
+                    string value = string.Format("FInt: {0}, FDouble: {1}",
                                 current->FieldInt, current->FieldDouble);
                     MessageBox.Show(value, "Data");
                     current++;
@@ -31,5 +31,28 @@ public class Test
             }
         }
         return true;
+    }
+
+    [DllExport("GetList", CallingConvention.Cdecl)]
+    public static unsafe Value* GetList(ref int arrayLength)
+    {
+        int count = 2;
+        arrayLength = count;
+        Value* result = null;
+        Value[] data = new Value[count];
+        for (int i = 0; i < count; i++)
+        {
+            Value value = new Value()
+            {
+                FieldInt = i,
+                FieldDouble = i
+            };
+            data[i] = value;
+        }
+        fixed (Value* current = &data[0], last = &data[count - 1])
+        {
+            result = current;
+            return result;
+        }
     }
 }
