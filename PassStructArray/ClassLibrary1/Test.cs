@@ -11,6 +11,17 @@ public struct Value
 public class Test
 {
 
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void MyCallbackMethod(int x);
+
+
+    [DllExport("TestCallBack", CallingConvention.Cdecl)]
+    public static void TestCallBack(MyCallbackMethod myCallbackMethod)
+    {
+        if (myCallbackMethod == null) return;
+        myCallbackMethod(31);
+    }
+
     [DllExport("GetString", CallingConvention.Cdecl)]
     public unsafe static char* GetString()
     {
