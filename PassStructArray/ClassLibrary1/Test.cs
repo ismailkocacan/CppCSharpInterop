@@ -10,6 +10,31 @@ public struct Value
 
 public class Test
 {
+
+    [DllExport("GetString", CallingConvention.Cdecl)]
+    public unsafe static char* GetString()
+    {
+        string retVal = "aaaa";
+        fixed(char* p = retVal)
+        {
+            return p;
+        }
+    }
+
+    [DllExport("GetWideString", CallingConvention.Cdecl)]
+    public static void GetWideString([MarshalAs(UnmanagedType.LPWStr)] ref string value)
+    {
+        value = "my wide string test";
+    }
+
+
+    [DllExport("GetAnsiString", CallingConvention.Cdecl)]
+    public static void GetAnsiString([MarshalAs(UnmanagedType.LPStr)] ref string value)
+    {
+        value = "my ansi string test";
+    }
+
+
     [DllExport("Post", CallingConvention.Cdecl)]
     public static unsafe bool Post(ref Value elementFirst, ref Value elementLast)
     {

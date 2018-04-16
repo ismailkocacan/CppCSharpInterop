@@ -30,6 +30,17 @@ function Post(First, Last: PValue): Boolean; cdecl;
 function GetList(ArrayLength: PINT): PValue; cdecl;
   external LibName name 'GetList';
 
+
+function GetString(): PAnsiString; cdecl;
+ external LibName name 'GetString';
+
+procedure GetAnsiString(var Value:PAnsiChar); cdecl;
+ external LibName name 'GetAnsiString';
+
+procedure GetWideString(var Value:PChar); cdecl;
+ external LibName name 'GetWideString';
+
+
 var
   AList: array of TValue;
 
@@ -37,7 +48,13 @@ var
   I: Integer;
   ArrayLength: Integer;
 
+  AString : string;
+  AStrWideChar : PChar;
+  AStrAnsiChar : PAnsiChar;
 begin
+  AString := string(GetString());
+  GetAnsiString(AStrAnsiChar);
+  GetWideString(AStrWideChar);
 
   SetLength(AList, 2);
   AList[0].FieldInt := 33;
