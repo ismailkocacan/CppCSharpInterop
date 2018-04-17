@@ -24,6 +24,8 @@ type
 
   PValue = ^TValue;
 
+  TMyCallbackMethod = procedure(X:Integer); cdecl;
+
 function Post(First, Last: PValue): Boolean; cdecl;
   external LibName name 'Post';
 
@@ -40,6 +42,13 @@ procedure GetAnsiString(var Value:PAnsiChar); cdecl;
 procedure GetWideString(var Value:PChar); cdecl;
  external LibName name 'GetWideString';
 
+procedure TestCallBack(Test:TMyCallbackMethod); cdecl;
+ external LibName name 'TestCallBack';
+
+procedure MyCallbackMethod(X:Integer);cdecl;
+begin
+   WriteLn(X);
+end;
 
 var
   AList: array of TValue;
@@ -52,6 +61,11 @@ var
   AStrWideChar : PChar;
   AStrAnsiChar : PAnsiChar;
 begin
+
+  TestCallBack(@MyCallbackMethod);
+  Readln;
+
+
   AString := string(GetString());
   GetAnsiString(AStrAnsiChar);
   GetWideString(AStrWideChar);
