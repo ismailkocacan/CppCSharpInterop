@@ -1,6 +1,7 @@
 ﻿using RGiesecke.DllExport;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 public struct Value
 {
@@ -19,7 +20,11 @@ public class Test
     public static void TestCallBack(MyCallbackMethod myCallbackMethod)
     {
         if (myCallbackMethod == null) return;
-        myCallbackMethod(31);
+        Thread thread = new Thread(delegate() {
+            Thread.Sleep(5000);
+            myCallbackMethod(31);
+        });
+        thread.Start();
     }
 
     [DllExport("GetString", CallingConvention.Cdecl)]
