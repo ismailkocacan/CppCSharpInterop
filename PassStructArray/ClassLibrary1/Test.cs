@@ -1,4 +1,5 @@
-﻿using RGiesecke.DllExport;
+﻿using System;
+using RGiesecke.DllExport;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -9,12 +10,46 @@ public struct Value
     public double FieldDouble;
 }
 
+[StructLayout(LayoutKind.Sequential)]
+public class Point
+{
+    public int X { get; set; }
+    public int Y { get; set; }
+
+    public void Show()
+    {
+        MessageBox.Show(String.Format("{0},{1}", X, Y));
+    }
+}
+
+
 public class Test
 {
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate void MyCallbackMethod(int x);
 
+    public delegate void Show();
+
+
+
+    [DllExport("GetPointerOfObjectMethod", CallingConvention.Cdecl)]
+    public unsafe static void* GetPointerOfObjectMethod()
+    {   
+        Point point = new Point()
+        {
+            X = 31,
+            Y = 32
+        };
+        Show show = point.Show;
+        IntPtr intPtr = Marshal.GetFunctionPointerForDelegate(show);
+        /*
+        GC nesneyi silebilir, Düşünmek lazım !!!
+        GCHandle hPoint = GCHandle.Alloc(point, GCHandleType.Pinned);
+        hPoint.Free();
+        */
+        return intPtr.ToPointer();
+    }
 
     [DllExport("TestCallBack", CallingConvention.Cdecl)]
     public static void TestCallBack(MyCallbackMethod myCallbackMethod)
