@@ -26,3 +26,5 @@
 *.exe
 *.out
 *.app
+/Union/C/cmake-build-debug
+/Union/C/.idea
