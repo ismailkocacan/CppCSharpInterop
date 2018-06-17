@@ -2,20 +2,20 @@
 #define C_LIBRARY_H
 
 typedef enum _DataType {
-    dtInteger,
-    dtFloat
+    DT_INTEGER,
+    DT_DOUBLE
 } DataType, *PDataType;
 
 typedef union _UnionData {
-    int A;
-    double B;
+    int FieldInteger;
+    double FieldDouble;
 } UnionData, *PUnionData;
 
 typedef struct _Data {
-    int A;
-    double B;
+    int FieldInteger;
+    double FieldDouble;
     DataType DataType;
-    UnionData UData;
+    UnionData UnionData;
 } Data, *PData;
 
 typedef PData(*PCreateData)();

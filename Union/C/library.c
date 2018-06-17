@@ -4,9 +4,13 @@
 
 PData CreateData() {
     PData pData = malloc(sizeof(Data));
-    pData->A = 35;
-    pData->DataType = dtFloat;
-    pData->UData.B = 31.32;
+    pData->FieldInteger = 35;
+    pData->FieldDouble = 38.1;
+    /* UnionData alanlarına erişirken,
+       DataType değerine göre kontrol edip okuyacağız.
+    */
+    pData->DataType = DT_DOUBLE;
+    pData->UnionData.FieldDouble = 31.32;
     return pData;
 }
 
