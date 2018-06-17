@@ -18,6 +18,9 @@ typedef struct _Data {
     UnionData UData;
 } Data, *PData;
 
+typedef PData(*PCreateData)();
+typedef void(*PRemoveData)(PData data);
+
 PData CreateData();
 void RemoveData(PData data);
 
