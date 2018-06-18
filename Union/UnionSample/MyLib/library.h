@@ -1,6 +1,8 @@
 #ifndef C_LIBRARY_H
 #define C_LIBRARY_H
 
+#define DllExport __declspec(dllexport) 
+
 typedef enum _DataType {
     DT_INTEGER,
     DT_DOUBLE
@@ -21,9 +23,7 @@ typedef struct _Data {
 typedef PData(*PCreateData)();
 typedef void(*PRemoveData)(PData data);
 
-PData CreateData();
-void RemoveData(PData data);
-
-void hello(void);
+DllExport PData CreateData();
+DllExport void RemoveData(PData data);
 
 #endif
