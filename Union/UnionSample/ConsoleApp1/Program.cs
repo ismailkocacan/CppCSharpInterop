@@ -31,11 +31,11 @@ unsafe class Program
     const string DllName = "MyLib.dll";
 
     [DllImport(DllName, SetLastError = true, CallingConvention = CallingConvention.Cdecl)]
-    static extern IntPtr CreateData();
+    static extern Data* CreateData();
 
 
     [DllImport(DllName, SetLastError = true, CallingConvention = CallingConvention.Cdecl)]
-    static extern void RemoveData(IntPtr dataPtr);
+    static extern void RemoveData(Data* dataPtr);
 
 
     /*
@@ -54,8 +54,7 @@ unsafe class Program
         Console.WriteLine(string.Format("Size Of UnionData : {0}", Marshal.SizeOf(typeof(UnionData))));
         Console.WriteLine(string.Format("Size Of Data : {0}", Marshal.SizeOf(typeof(Data))));
 
-        IntPtr intPtr = CreateData();
-        Data* dataPtr = (Data*)intPtr.ToPointer();
+        Data* dataPtr = CreateData();
 
         Console.WriteLine(string.Format("FieldInteger Value : {0}", dataPtr->FieldInteger));
         Console.WriteLine(string.Format("FieldDouble Value : {0}", dataPtr->FieldDouble));
@@ -79,6 +78,6 @@ unsafe class Program
                     break;
                 }
         }
-        RemoveData(intPtr);
+        RemoveData(dataPtr);
     }
 }
