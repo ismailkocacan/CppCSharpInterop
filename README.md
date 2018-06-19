@@ -1,2 +1,2 @@
 # CppCSharpInterop
-This repo contains C++, C#, Delphi interop samples
+This repo contains C, C++, C#, Delphi interop samples
