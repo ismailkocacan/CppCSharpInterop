@@ -48,11 +48,30 @@ procedure RemoveData(DataPtr:PData); cdecl; external LibName name 'RemoveData';
 var
   DataPtr : PData;
 begin
-  ShowMessage(sizeof(TUnionData).ToString());
-  
   try
     DataPtr := CreateData();
+    
+  	WriteLn(Format('Size Of TDataType : %d',[SizeOf(TDataType)]));
+	  WriteLn(Format('Size Of TUnionData: %d',[SizeOf(TUnionData)]));
+	  WriteLn(Format('Size Of TData : %d',[SizeOf(TData)]));
+	  WriteLn(Format('Size Of DataPtr : %d',[SizeOf(DataPtr)]));
+	  WriteLn(Format('Size Of DataPtr : %d',[SizeOf(DataPtr^)]));
+                                    
+    WriteLn(Format('FieldInteger Value: %d',[DataPtr^.FieldInteger]));
+    WriteLn(Format('FieldDouble Value: %f',[DataPtr^.FieldDouble]));
+  
+    case DataPtr^.DataType of
+      dtInteger:begin
+       	WriteLn(Format('Integer Value : %d',[DataPtr^.UnionData.FieldInteger]));
+      end;
+      dtDouble:begin
+       	WriteLn(Format('Double Value : %f',[DataPtr^.UnionData.FieldDouble]));
+      end;
+      else
+       WriteLn('UnKnown'); 
+    end;
 
+    RemoveData(DataPtr);
   except
     on E: Exception do
       Writeln(E.ClassName, ': ', E.Message);
