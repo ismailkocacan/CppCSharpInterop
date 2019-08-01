@@ -71,10 +71,9 @@ begin
        WriteLn('UnKnown'); 
     end;
 
-    RemoveData(DataPtr);
   except
     on E: Exception do
       Writeln(E.ClassName, ': ', E.Message);
   end;
-
+  RemoveData(DataPtr);  
 end.
